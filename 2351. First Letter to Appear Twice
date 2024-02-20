@@ -1,0 +1,13 @@
+class Solution(object):
+    def repeatedCharacter(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        d={}
+        for ch in s:
+            if ch in d:
+                return ch
+            else:
+                d[ch]=d.get(ch,0)+1
+        
