@@ -6,15 +6,15 @@ class Solution(object):
         """
         count=0
         i=0
-        while i<len(nums):
-            if nums[i]==0:
-                nums.pop(i)
-                count+=1
-            else:
+        j=0
+        n=len(nums)
+        while i<len(nums) and j<len(nums):
+            if nums[i]!=0:
                 i+=1
-        i=0
-        while i<count:
-            nums.append(0)
-            i+=1
+            if nums[j]==0:
+                j+=1
+            if i<n and j<n and i<j:
+                nums[i],nums[j]=nums[j],nums[i]
+            j+=1
     
         
