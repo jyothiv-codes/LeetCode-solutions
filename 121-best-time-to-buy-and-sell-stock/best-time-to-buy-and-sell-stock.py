@@ -14,4 +14,3 @@ class Solution(object):
                 left=right
             right+=1
         return m
-        
