@@ -4,10 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        hashmap={}
-        for element in nums:
-            if element not in hashmap:
-                hashmap[element]=1
-            else:
-                return element
+        nums.sort()
+        for i in range(len(nums)):
+            if nums[i]==nums[i+1]:
+                return nums[i]
+                
         
