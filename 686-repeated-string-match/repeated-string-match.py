@@ -5,9 +5,6 @@ class Solution(object):
         :type b: str
         :rtype: int
         """
-        a_len=len(a)
-        b_len=len(b)
-        new_s=a
         i=1
         repeat=int(len(b)/len(a))
         while i<=(repeat+5):
