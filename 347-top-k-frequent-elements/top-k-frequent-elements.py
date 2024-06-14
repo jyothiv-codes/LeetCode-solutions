@@ -1,3 +1,4 @@
+import heapq as hp
 class Solution(object):
     def topKFrequent(self, nums, k):
         """
@@ -6,17 +7,17 @@ class Solution(object):
         :rtype: List[int]
         """
         d={}
-        for n in nums:
-            d[n]=d.get(n,0)+1
-        output=[]
-        sorted_d = sorted(d.items(), key=lambda x: x[1], reverse=True)
-        i=0
-        for key in sorted_d:
-            if i<k:
-                output.append(key[0])
-                i+=1
-            else:
-                return output
-        return output
+        for i in nums:
+            d[i]=d.get(i,0)+1
+        heap=[]
+        for key in d:
+            hp.heappush(heap,(d[key]*(-1),key))
+        answer=[]
+        for i in range(k):
+            temp=hp.heappop(heap)
+            answer.append(temp[1])
+        return answer
+        
+        
 
         
