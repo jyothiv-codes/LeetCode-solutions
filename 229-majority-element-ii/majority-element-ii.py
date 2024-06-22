@@ -4,16 +4,22 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        d={}
-        n=len(nums)
-        count=0
-        element=-1
-        output=[]
-        for num in nums:
-            d[num]=d.get(num,0)+1
-            if d[num]>int(n/3):
-                if num not in output:
-                    output.append(num)
-        return output
+        count=defaultdict(int)
+        for n in nums:
+            count[n]+=1
+            if len(count)<=2:
+                continue
+            new_count=defaultdict(int)
+            for n,c in count.items():
+                if c>1:
+                    new_count[n]=c-1
+            count=new_count
+        result=[]
+        for n in count:
+            if nums.count(n)>len(nums)//3:
+                result.append(n)
+        return result
+
+    
         
         
