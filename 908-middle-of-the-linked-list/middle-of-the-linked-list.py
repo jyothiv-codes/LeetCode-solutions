@@ -15,12 +15,12 @@ class Solution(object):
             curr=curr.next
             n+=1
         print("length of the linked list",n)
-        even=0
-        curr_even=head
-        print("curr_even",curr_even)
-        while even<(n/2):
-            curr_even=curr_even.next
-            even+=1
-        return curr_even
-        print("lets go to if else")
+        proc=0
+        curr_proc=head
+        print("curr_proc",curr_proc)
+        while proc<(n/2):
+            curr_proc=curr_proc.next
+            proc+=1
+        return curr_proc
+        
         
