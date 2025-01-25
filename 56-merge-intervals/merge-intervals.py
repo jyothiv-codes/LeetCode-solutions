@@ -1,22 +1,17 @@
-class Solution(object):
-    def merge(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: List[List[int]]
-        """
-        merged=[]
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort()
+        final_ans=[]
         for interval in intervals:
-            if len(merged)==0:
-                merged.append(interval)
+            if len(final_ans)==0:
+                final_ans.append(interval)
+            start=interval[0]
+            end=interval[1]
+            if start<=final_ans[-1][1]:
+                final_ans[-1][1]=max(end,final_ans[-1][1])
+            
             else:
-                end=merged[-1][1]
-                curr_start=interval[0]
-                curr_end=interval[1]
-                if curr_start==end or curr_start<end:
-                    merged[-1][1]=max(curr_end,end)
-                elif curr_start>end:
-                    merged.append(interval)
-        return merged
+                final_ans.append(interval)
+        return final_ans
 
         
