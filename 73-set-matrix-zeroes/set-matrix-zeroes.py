@@ -1,49 +1,31 @@
-class Solution(object):
-    def setZeroes(self, matrix):
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
         """
-        :type matrix: List[List[int]]
-        :rtype: None Do not return anything, modify matrix in-place instead.
+        Do not return anything, modify matrix in-place instead.
         """
+        makezero=[]
+        rows=len(matrix)
+        cols=len(matrix[0])
+        zerorow=[0]*rows
+        zerocol=[0]*cols
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j]==0:
+                    pair=[i,j]
+                    makezero.append(pair)
+        print(makezero)
+        for pair in makezero:
+            i=pair[0]
+            j=pair[1]
+            print(i,j)
+            #make col 0
+            for ni in range(rows):
+                if matrix[ni][j]!=0:
+                    matrix[ni][j]=0
+            #make row 0
+            for k in range(cols):
+                if matrix[i][k]!=0:
+                    matrix[i][k]=0
         
-        r=len(matrix)
+
         
-        c=len(matrix[0])
-        modified=[]
-        for i in range(r):
-            for j in range(c):
-                if matrix[i][j]==0 and [i,j] not in modified:
-                    #modify the column
-                    for k in range(r):
-                        if matrix[k][j]!=0:
-                            matrix[k][j]=0
-                            modified.append([k,j])
-                    #modify the row
-                    for k in range(c):
-                        if matrix[i][k]!=0:
-                            matrix[i][k]=0
-                            modified.append([i,k])
-                    
-
-
-
-                    """
-                    if i in rows and j not in cols:
-                        cols.append(j)
-                        for k in range(r):
-                            if matrix[k][j]!=0:
-                                matrix[k][j]=0
-                    elif i not in rows and j in cols:
-                        rows.append(i)
-                        for k in range(c):
-                            if matrix[i][k]!=0:
-                                matrix[i][k]=0
-                    elif i not in rows and j not in cols:
-                        cols.append(j)
-                        for k in range(r):
-                            if matrix[k][j]!=0:
-                                matrix[k][j]=0
-                        rows.append(j)
-                        for k in range(c):
-                            if matrix[i][k]!=0:
-                                matrix[i][k]=0
-                                """
