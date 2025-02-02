@@ -1,32 +1,26 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         direction=[(0,1),(1,0),(0,-1),(-1,0)]
-        direction_index=0
-        output=[]
-        
+        traversal=[]
         rows=len(matrix)
         cols=len(matrix[0])
-        visited=[[False for y in range(cols)] for x in range(rows)]
-        print(visited)
-        i=0
-        j=0
-        for x in range(rows*cols):
-            output.append(matrix[i][j])
-            visited[i][j]=True
-            ni=i+direction[direction_index][0]
-            nj=j+direction[direction_index][1]
-            if (ni<rows and nj<cols) and (ni>=0 and nj>=0) and visited[ni][nj]==False:
-                i=ni
-                j=nj
-                   
+        ci=0
+        cj=0
+        direction_index=0
+        visited=[]
+        for k in range(rows*cols):
+            traversal.append(matrix[ci][cj])
+            visited.append([ci,cj])
+            ni=ci+direction[direction_index][0]
+            nj=cj+direction[direction_index][1]
+            if ni>=0 and nj>=0 and ni<rows and nj<cols and [ni,nj] not in visited:
+                ci=ni
+                cj=nj
             else:
-                print("change direction")
                 direction_index=(direction_index+1)%4
-                i+=direction[direction_index][0]
-                j+=direction[direction_index][1]
-                
-        return output
-
+                ci=ci+direction[direction_index][0]
+                cj=cj+direction[direction_index][1]
+        return traversal
 
 
 
