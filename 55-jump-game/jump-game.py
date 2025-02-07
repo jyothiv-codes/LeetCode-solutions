@@ -1,15 +1,13 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        n=len(nums)
-        if n==1:
-            return True
-        curr=0
+        s=0
         for i in nums:
-            if curr<0:
-                return False
-            elif i>curr:
-                curr=i
-            curr-=1
             
+            if s<0:
+                return False
+            if i>s:
+                s=i
+            s-=1
         return True
+
         
