@@ -2,25 +2,25 @@ from collections import OrderedDict
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.store=OrderedDict()
         self.capacity=capacity
-
-    def get(self, key: int) -> int:
-        if key not in self.store:
-            return -1
-        value=self.store.pop(key)
-        self.store[key]=value
-        return value
+        self.cache=OrderedDict()
         
-
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            value=self.cache[key]
+            del self.cache[key]
+            self.cache[key]=value
+            return value
+        return -1
+        
     def put(self, key: int, value: int) -> None:
-        if key in self.store:
-            self.store.pop(key)
-        else:
-            if self.capacity<=len(self.store):
-                self.store.popitem(last=False)
-            
-        self.store[key]=value
+        if key not in self.cache:
+            if len(self.cache)==self.capacity:
+                self.cache.popitem(last=False)
+        if key in self.cache:
+            del self.cache[key]
+        self.cache[key]=value
+
 
         
 
