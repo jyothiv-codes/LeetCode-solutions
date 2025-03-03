@@ -1,32 +1,29 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        def freq_map(word):
-            f={}
-            
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        def calc_freq(word):
+            freq={}
             for ch in word:
-                f[ch]=f.get(ch,0)+1
-            s=""
-            sorted_f=dict(sorted(f.items()))
-            for key in sorted_f:
-                s=s+key+str(sorted_f[key])
-            return s
+                freq[ch]=freq.get(ch,0)+1
+            to_return=sorted(freq)
+            #print("sorted dict",to_return)
+            return_string=""
+            for key in to_return:
+                return_string+=key
+                return_string+=str(freq[key])
+            return str(return_string)
+
         d={}
         for word in strs:
-            key=freq_map(word)
-            if key not in d:
-                d[key]=[]
-            d[key].append(word)
-        output=[]
+            possible_key=calc_freq(word)
+            if possible_key not in d:
+                d[possible_key]=[]
+            d[possible_key].append(word)
+        answer=[]
         for key in d:
-            temp=[]
-            for values in d[key]:
-                temp.append(values)
-            output.append(temp)
-        return output
-            
+            answer.append(d[key])
+        return answer
+
+
+
 
         
