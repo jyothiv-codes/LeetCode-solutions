@@ -1,14 +1,22 @@
+from collections import OrderedDict
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        d={}
+        frequency=OrderedDict()
         i=0
+        # construct a hashmap. character is the key and array values are the indexes where it occurs
         for ch in s:
-            if ch not in d:
-                d[ch]=[]
-            d[ch].append(i)
+            if ch not in frequency:
+                frequency[ch]=[]
+            frequency[ch].append(i)
             i+=1
-        for key in d:
-            if len(d[key])==1:
-                return d[key][0]
+        
+        # for every key, check if the value is equal to 1. if yes, return that index
+        for ch in frequency:
+            if len(frequency[ch])==1:
+                return frequency[ch][0]
+        # if no character is repeated only once, return -1
         return -1
+        
+        
+
         
