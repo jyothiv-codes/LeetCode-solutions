@@ -1,49 +1,34 @@
 import heapq as hp
-class Solution(object):
-    def reorganizeString(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
+class Solution:
+    def reorganizeString(self, s: str) -> str:
         d={}
-        m=0
         for ch in s:
             d[ch]=d.get(ch,0)+1
-            m=max(m,d[ch])
-        
-        sorted_l = list(sorted(d.items(), key=lambda item: item[1], reverse=True))   
-        
-
-        #create a heap
+        sorted_l=list(sorted(d.items(),key=lambda x:x[1],reverse=True))
         heap=[]
         for pair in sorted_l:
-            create_pair=[pair[1]*(-1),pair[0]]
-            heap.append(create_pair)
+            to_add=[pair[1]*(-1),pair[0]]
+            heap.append(to_add)
         hp.heapify(heap)
         ans=""
         temp_arr=[]
         while len(heap)>0:
-            print(heap,"heap at every step")
             temp=hp.heappop(heap)
-            if ans=="" or temp[1]!=ans[-1]:
-                print("going thru if")
+            # if ans is null or prev char doesn't match the char at temp
+            if ans=="" or ans[-1]!=temp[1]:
                 ans+=temp[1]
                 temp[0]+=1
                 if temp[0]*(-1)>0:
                     hp.heappush(heap,temp)
-                
+            #else
             else:
-                print("going thru else")
                 temp_arr.append(temp)
                 while temp[1]==ans[-1] and len(heap)>0:
-                    print("Within while")
                     temp=hp.heappop(heap)
                     temp_arr.append(temp)
                 if temp[1]==ans[-1]:
-                    print("if within else")
                     return ""
                 else:
-                    print("else within else")
                     ans+=temp[1]
                     temp[0]+=1
                     if temp[0]>0:
@@ -52,17 +37,13 @@ class Solution(object):
                         pair=temp_arr.pop()
                         if pair[0]<0:
                             hp.heappush(heap,pair)
-                    print("heap after else within else",heap)
-                print("at the end of else, the heap is ",heap)
-
-                
-                        
-
-                
-
-        print(heap)
-        
-
         return ans
+                    
+                
+
+
+
+
+
 
         
