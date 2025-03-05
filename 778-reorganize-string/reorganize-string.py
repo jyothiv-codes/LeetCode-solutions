@@ -31,8 +31,8 @@ class Solution:
                 else:
                     ans+=temp[1]
                     temp[0]+=1
-                    if temp[0]>0:
-                        hp.heappush(heap,temp)
+                    print("temp",temp)
+                    
                     while len(temp_arr)>0:
                         pair=temp_arr.pop()
                         if pair[0]<0:
