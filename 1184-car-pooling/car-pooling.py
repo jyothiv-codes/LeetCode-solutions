@@ -1,23 +1,16 @@
-class Solution(object):
-    def carPooling(self, trips, capacity):
-        """
-        :type trips: List[List[int]]
-        :type capacity: int
-        :rtype: bool
-        """
-        times=[]
-        for passenger,from_,to_ in trips:
-            pair1=[from_,passenger]
-            pair2=[to_,-passenger]
-            times.append(pair1)
-            times.append(pair2)
-        times.sort()
-        curr=0
-        for pair in times:
-            curr+=pair[1]
-            if curr>capacity:
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        buckets=[0]*1001
+        for trip in trips:
+            start=trip[1]
+            end=trip[2]
+            for k in range(start,end):
+                buckets[k]+=trip[0]
+        for bucket in buckets:
+            if bucket>capacity:
                 return False
         return True
 
 
+            
         
