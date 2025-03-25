@@ -2,7 +2,7 @@ class Solution:
     def repairCars(self, ranks: List[int], cars: int) -> int:
         min_rank=min(ranks)
         max_rank=max(ranks)
-        freq=[0]*((max_rank)+1)
+        freq=[0]*(max_rank+1)
         for rank in ranks:
             freq[rank]+=1
         low=1
@@ -17,5 +17,6 @@ class Solution:
             else:
                 low=mid+1
         return low
+
 
         
