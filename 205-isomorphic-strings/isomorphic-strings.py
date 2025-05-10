@@ -1,31 +1,28 @@
-from collections import OrderedDict
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        h1=OrderedDict()
-        h2=OrderedDict()
-        for ch in s:
-            h1[ch]=h1.get(ch,0)+1
-        for ch in t:
-            h2[ch]=h2.get(ch,0)+1
-        sv1 = OrderedDict(sorted(h1.items(), key=lambda item: item[1]))
-        sv2 = OrderedDict(sorted(h2.items(), key=lambda item: item[1]))
-        print(sv1)
-        print(sv2)
-        l1=list(sv1.keys())
-        l2=list(sv2.keys())
-        if len(l1)!=len(l2):
+        if len(s)!=len(t):
             return False
-        print(l1)
-        mapping={}
-        for i in range(len(l1)):
-            mapping[l1[i]]=l2[i]
-        matchstr=""
+        d1={}
+        index=0
+        s1=""
         for ch in s:
-            matchstr+=(mapping[ch])
-        if matchstr==t:
+            if ch not in d1:
+                index+=1
+                d1[ch]=index
+            s1+=str(d1[ch])
+        d2={}
+        index=0
+        s2=""
+        for ch in t:
+            if ch not in d2:
+                index+=1
+                d2[ch]=index
+            s2+=str(d2[ch])
+        if s1==s2:
             return True
         return False
-    
         
 
+        
+        
         
