@@ -1,23 +1,22 @@
 import heapq as hp
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         d={}
-        for i in nums:
-            d[i]=d.get(i,0)+1
-        heap=[]
-        for key in d:
-            hp.heappush(heap,(d[key]*(-1),key))
-        answer=[]
+        for n in nums:
+            d[n]=d.get(n,0)+1
+        arr=[]
+        for key,value in d.items():
+            #value=d[key]
+            value=value*(-1)
+            pair=(value,key)
+            arr.append(pair)
+        heap=hp.heapify(arr)
+        output=[]
         for i in range(k):
-            temp=hp.heappop(heap)
-            answer.append(temp[1])
-        return answer
-        
-        
-
+            if i>=len(nums):
+                break
+            pair=hp.heappop(arr)
+            output.append(pair[1])
+        return output
+            
         
