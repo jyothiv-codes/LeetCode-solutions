@@ -1,28 +1,29 @@
+from collections import deque
 class MinStack:
 
     def __init__(self):
-        self.stack=[]
-        self.m=[]
-        
+        self.stack=deque([])
+        self.m=0
 
     def push(self, val: int) -> None:
         if len(self.stack)==0:
-            self.m.append(val)
+            pair=[val,val]
+            #self.m=val    
         else:
-            self.m.append(min(val,self.m[-1]))
-
-        self.stack.append(val)
+            pair=[val,min(val,self.stack[-1][1])]
+            #self.m=min(val,self.m)
+        self.stack.append(pair)
+        
 
     def pop(self) -> None:
         self.stack.pop()
-        self.m.pop()
-        
+
     def top(self) -> int:
-        return self.stack[-1]
+        return self.stack[-1][0]
         
 
     def getMin(self) -> int:
-        return self.m[-1]
+        return self.stack[-1][1]
         
 
 
