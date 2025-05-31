@@ -1,28 +1,31 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        i=1
-        count=0
-        chars.append("1")
-        while i<len(chars):
-            if chars[i]==chars[i-1]:
-                count+=1
+        if len(chars)==1:
+            print([chars[0],str(1)])
+            #return 2
+            #return -1
+        n=len(chars)
+        output=[]
+        i,curr=0,0
+        while i<n:
+            if i<n-1 and chars[i]==chars[i+1]:
+                curr+=1
             else:
-                if count==0:
-                    pass
-                else:
-                    for j in range(count):
-                        chars.pop(i-1)
-                        i-=1
-                   
-                    for ch in str(count+1):
-                        chars.insert(i,ch)
-                        i+=1
-                    print(chars)
-                    #chars.insert(i,str(count+1))
-                    
-                count=0
+                output.append(chars[i])
+                if curr!=0:
+                    output.append(str(curr+1))
+                curr=0
             i+=1
-        chars.pop()
+        """if chars[-1]!=chars[-2]:
+            output.append(chars[-1])
+            output.append(str(1))"""
+        print("output arr",output)
+        chars.clear()
+        output="".join(output)
+        print("length",chars)
+        for ch in output:
+            chars.append(ch)
         print(chars)
-        return len(chars)
+        #return len(chars)
+
         
