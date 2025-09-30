@@ -1,19 +1,17 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        one_index=[]
-        for i in range(len(boxes)):
+        position=[]
+        answer=[]
+        n=len(boxes)
+        for i in range(n):
             if boxes[i]=="1":
-                one_index.append(i)
-        output=[]
-        temp=0
-        print(one_index)
-        for i in range(len(boxes)):
-            temp=0
-            for j in range(len(one_index)):
-                temp+=abs(i-one_index[j])
-            
-            output.append(temp)
-        print(output)
-        return output
+                position.append(i)
+        for i in range(n):
+            sum_=0
+            for index in position:
+                distance=abs(i-index)
+                sum_+=distance
+            answer.append(sum_)
+        return answer
 
         
